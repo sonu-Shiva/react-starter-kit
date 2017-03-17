@@ -1,0 +1,40 @@
+{
+  "name": "react-starter-kit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A progressive React starter kit based on the Atomic Design methodology",
+  "author": "Masood Ahmed <masood.ahmed09@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/masood09/react-starter-kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masood09/react-starter-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/masood09/react-starter-kit/issues"
+  },
+  "keywords": [
+    "react",
+    "starterkit",
+    "JSX",
+    "ES6",
+    "webpack",
+    "eslint",
+    "stylelint",
+    "babel",
+    "react-storybook"
+  ],
+  "engines": {
+    "node": ">=6.2.1",
+    "npm": ">=3.9.3"
+  },
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 11",
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
