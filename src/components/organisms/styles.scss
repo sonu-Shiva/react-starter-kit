@@ -9,6 +9,7 @@ $borderColor: #000000;
   width: 99%;
 }
 .divStyle{
+  margin-top: 10%;
   width: 25%;
   height: 25%;
   margin: 0 auto;
@@ -22,27 +23,22 @@ $borderColor: #000000;
     margin-left: 2%;
   }
 }
-
 .button{
   border-radius: 50%;
-  border: 1px solid;
-  border-color: $borderColor;
+  background: transparent;
+  border: none;
   padding: 10px;
 }
 .shuffle{
   border-radius: 20%;
-  border: 1px solid;
-  border-color: $borderColor;
+  border: none;
   padding-top: 4px;
   margin-top: 8px;
   width: 30px;
   height: 30px;
   float: right;
   margin-right: 12%;
-}
-.shuffle img{
-  width: 15px !important;
-  height: 15px !important;
+  background: transparent;
 }
 .align{
   padding-bottom: 3%;
@@ -57,9 +53,8 @@ button:active{
   background: transparent;
 }
 h1{
-  color: white;
+  color: black;
   align: center;
-  min-height: 300px;
   padding-top: 20%;
   padding-left: 5%;
   padding-right: 5%;

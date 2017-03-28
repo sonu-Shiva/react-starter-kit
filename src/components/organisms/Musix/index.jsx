@@ -1,60 +1,18 @@
 import React, { Component } from 'react';
-import { Player } from 'components';
+import { Controls, Cover } from 'components';
 import Dll from './dll';
-import '../module.scss';
+import '../styles.scss';
+import songsJson from '../songs.json';
 
-const songs = [
-  {
-    title: '1. Stefano Gambarelli',
-    img: 'http://wallup.net/wp-content/uploads/2016/01/227916-low_poly-abstract-blue-digital_art-artwork-geometry-748x499.jpg',
-    url: 'http://ring.get4mobile.net/ringtone/ringtone/PRX434B0myTYqNwCTjQl8A/1490335589/fa1b23bb5e35c8aed96b1a5aba43df3d/stefano_gambarelli_feat_pochill-land_on_mars_v2.mp3',
-  },
-  {
-    title: '2. Accept-Seawinds',
-    img: 'http://wallup.net/wp-content/uploads/2016/01/220976-abstract-748x468.jpg',
-    url: 'http://ring.get4mobile.net/ringtone/ringtone/wUeTKjgjXee4h-PF0b5dSA/1490335589/a31a1abe019d922b7842fad752e8ab52/accept-seawinds_v2.mp3',
-  },
-  {
-    title: '3. Accept - No time to lose',
-    img: 'http://wallup.net/wp-content/uploads/2016/01/220978-abstract-748x468.jpg',
-    url: 'http://ring.get4mobile.net/ringtone/ringtone/4Bsr-nrz9Fif3zTfO6h4Og/1490335589/7bf27920033b3e5e4d660e8ac34afb46/accept-no_time_to_lose.mp3',
-  },
-  {
-    title: '4. Ultra Nate',
-    img: 'http://wallup.net/wp-content/uploads/2016/01/220979-fish-abstract-748x468.jpg',
-    url: 'http://ring.get4mobile.net/ringtone/ringtone/YLOMp3i35i9nUxRnfirUWg/1490335589/368fa38910ade35c0ccf5822a0004817/ultra_nate-free_javier_penna_remix.mp3',
-  },
-  {
-    title: '5. Sons of Maria',
-    img: 'http://wallup.net/wp-content/uploads/2016/01/220980-abstract-748x468.jpg',
-    url: 'http://ring.get4mobile.net/ringtone/ringtone/leO0tPEgFfEQQWxLtQQL0A/1490335589/27c036d0b014d65690a6203400a351f3/sons_of_maria-with_you_me_my_toothbrush_remix.mp3',
-  },
-  {
-    title: '6. Pete Logan',
-    img: 'http://wallup.net/wp-content/uploads/2016/01/220981-abstract-748x468.jpg',
-    url: 'http://ring.get4mobile.net/ringtone/ringtone/CosDu9frwGZEDX_TXaRvEg/1490335589/4ca4bf1421c302d5230869d438f3c8ba/pete_logan-wild_dreams_andrey_exx_feat_troitski_classic_rmx.mp3',
-  },
-  {
-    title: '7. Hardwell - Follow me',
-    img: 'http://wallup.net/wp-content/uploads/2016/01/220982-abstract-snow-snowflakes-748x468.jpg',
-    url: 'http://ring.get4mobile.net/ringtone/ringtone/iQgpbpkVq12pwHxIxibEKQ/1490335589/c758ecf8df6149c85462b6c88b1dfc17/hardwell_feat_jason_derulo-follow_me.mp3',
-  },
-];
+const songs = songsJson;
 
 export default class Musix extends Component {
-
   state = {
-    songTitle: '',
-    songImage: '',
-    songUrl: '',
     songIndex: 0,
     playState: false,
     prevState: true,
     nextState: true,
     shuffleState: false,
-    currentSongNode: null,
-    songsList: {},
-    songsCount: 0,
     prevIndex: 0,
     seekValue: 0,
   }
@@ -83,15 +41,14 @@ export default class Musix extends Component {
     const changedValue = document.getElementById('seek');
     const newVal = (currValue.duration * parseFloat(changedValue.value)) / 100;
     currValue.currentTime = newVal;
-    changedValue.value = newVal;
+    // changedValue.value = newVal;
     this.setState({ seekValue: newVal, });
   };
 
   getElapsedTime = () => () => {
     const currTime = document.getElementById('song');
-    const seeker = document.getElementById('seek');
     const elapsedTime = (currTime.currentTime / currTime.duration) * 100;
-    seeker.value = elapsedTime;
+    // seeker.value = elapsedTime;
     this.setState({ seekValue: elapsedTime, });
   };
 
@@ -208,15 +165,10 @@ export default class Musix extends Component {
   };
 
   render() {
-    const divStyle = {
-      backgroundImage: `url(${this.state.songImage})`,
-    };
     return (
-      <div className={'divStyle'} style={divStyle}>
-        <div>
-          <h1>{this.state.songTitle}</h1>
-        </div>
-        <Player
+      <div className={'divStyle'}>
+        <Cover songImage={this.state.songImage} songTitle={this.state.songTitle} />
+        <Controls
           playState={this.state.playState}
           prevState={this.state.prevState}
           nextState={this.state.nextState}
@@ -226,10 +178,9 @@ export default class Musix extends Component {
           next={this.next}
           shuffle={this.shuffle}
           seekValue={this.state.seekValue}
+          getElapsedTime={this.getElapsedTime}
+          songUrl={this.state.songUrl}
         />
-        <audio id={'song'} onTimeUpdate={this.getElapsedTime()} onEnded={this.next()}>
-          <source src={this.state.songUrl} type={'audio/mpeg'} />
-        </audio>
       </div>
     );
   }

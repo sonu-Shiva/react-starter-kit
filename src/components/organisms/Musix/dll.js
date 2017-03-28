@@ -26,7 +26,7 @@ export default class Dll {
         }
       }
     } else {
-      console.log('List index out of range.');
+      // console.log('List index out of range.');
       return null;
     }
   }
@@ -68,7 +68,7 @@ export default class Dll {
       newNode.next = tempNode;
       tempNode.previous = newNode;
     } else {
-      console.log('List index out of range.');
+      // console.log('List index out of range.');
       return;
     }
     this.length += 1;
@@ -90,7 +90,7 @@ export default class Dll {
       previousNode.next = nextNode;
       nextNode.previous = previousNode;
     } else {
-      console.log('List index out of range.');
+      // console.log('List index out of range.');
       return;
     }
     this.length -= 1;
@@ -102,9 +102,9 @@ export default class Dll {
       for (let node = this.head; node != null; node = node.next) {
         list.push(node.data);
       }
-      console.log(list);
+      // console.log(list);
     } else {
-      console.log('List is Empty.');
+      // console.log('List is Empty.');
     }
   }
   return;
